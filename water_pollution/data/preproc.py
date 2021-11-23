@@ -1,31 +1,33 @@
 import pandas as pd
 
-# Liste des Codes paramètre exploités dans les fichiers brut Physico-chimiques
+# Dictionaire des paramètres exploités dans les fichiers brut Physico-chimiques
 
-param_ids = [
-    1303, # Conductivité à 25°C
-    1311, # Oxygène dissous
-    1301, # Température de l'Eau
-    1302, # Potentiel en Hydrogène (pH)
-    1312, # Taux de saturation en oxygène
-    1841, # Carbone Organique
-    1295, # Turbidité Formazine Néphélométrique
-    1335, # Ammonium
-    1314, # Demande Chimique en Oxygène (DCO)
-    1433, # Orthophosphates (PO4)
-    1313, # Demande Biochimique en oxygène en 5 jours (D.B.O.5)
-    1350, # Phosphore total
-    1319, # Azote Kjeldahl
-    1340, # Nitrates <---------------------------------------------- TARGET
-    1339, # Nitrites
-    1305, # Matières en suspension
-    1342, # Silicates
-]
+PARAM_LABELS = {
+    1303:"Conductivité à 25°C",
+    1311:"Oxygène dissous",
+    1301:"Température de l'Eau",
+    1302:"Potentiel en Hydrogène (pH)",
+    1312:"Taux de saturation en oxygène",
+    1841:"Carbone Organique",
+    1295:"Turbidité Formazine Néphélométrique",
+    1335:"Ammonium",
+    1314:"Demande Chimique en Oxygène (DCO)",
+    1433:"Orthophosphates (PO4)",
+    1313:"Demande Biochimique en oxygène en 5 jours (D.B.O.5)",
+    1350:"Phosphore total",
+    1319:"Azote Kjeldahl",
+    1340:"Nitrates",
+    1339:"Nitrites",
+    1305:"Matières en suspension",
+    1342:"Silicates",
+}
 
-station_id = 6059500 # Par défaut, la station SAONE CALUIRE
+PARAM_IDS = [k for k in PARAM_LABELS] # liste des id
+
+STATION_ID = 6059500 # Par défaut, la station SAONE CALUIRE
 
 
-def get_phychi_data(file_path,station_id=station_id,param_ids=param_ids):
+def get_phychi_data(file_path,station_id=STATION_ID,param_ids=PARAM_IDS):
     """From PhyChi data, returns a df
     each column is a parameter from param_ids (column name = param_id)
     index = timestamp
