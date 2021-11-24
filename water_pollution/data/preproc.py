@@ -22,7 +22,7 @@ class Station():
     def __repr__(self):
         return f"Station({self.id},{self.label},df)"
 
-def get_rawdf_from_pc_file(file_path,param_ids=PARAM_IDS):
+def get_rawdf_from_file(file_path,param_ids=PARAM_IDS):
     """From a PhyCh csv file :
     Returns a df :
     - with usefull columns only
@@ -62,7 +62,7 @@ def get_rawdf_from_pc_file(file_path,param_ids=PARAM_IDS):
 def split_rawdf_to_stations(df):
     """
     From a raw df containing data for multiple stations :
-    returns a list of Station objects
+    returns a dict with station_id:Station object
     """
 
     # df with station id and label
@@ -71,8 +71,7 @@ def split_rawdf_to_stations(df):
     station_infos.columns = ['id','label']
 
 
-    stations = []
-
+    stations = {}
 
     for _, row in station_infos.iterrows():
         st_id = row['id']
@@ -80,7 +79,7 @@ def split_rawdf_to_stations(df):
         st_df = df[df['CdStationMesureEauxSurface'] == st_id]
 
         station = Station(st_id, st_label, st_df)
-        stations.append(station)
+        stations[st_id] = station
 
     return stations
 
@@ -145,3 +144,30 @@ def cook_rawdf(df):
     merged_df = merged_df.fillna(method='ffill')
 
     return merged_df
+
+def turn_df_to_month(df):
+    """From a cooked df, returns a df with data by month"""
+
+    df['month'] = df.index.month
+    df['year'] = df.index.year
+    df = df.groupby(['year', 'month'], as_index=False).mean()
+    df['date'] = pd.to_datetime(dict(year=df.year, month=df.month, day=1),
+                                format='%Y%m')
+    df = df.drop(columns=['year', 'month'])
+    df = df.set_index('date')
+    df = df.asfreq(freq='MS', method='pad')
+
+    return df
+
+
+def get_station_month_df_from_file(file_path,station_id,param_ids=PARAM_IDS):
+
+
+    raw_df = get_rawdf_from_file(file_path, param_ids=PARAM_IDS)
+
+    stations = split_rawdf_to_stations(raw_df)
+    df = stations[station_id].df  # df de la station caluire
+    df = cook_rawdf(df)
+    df = turn_df_to_month(df)
+
+    return df
