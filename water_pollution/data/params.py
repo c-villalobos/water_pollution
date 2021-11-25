@@ -26,4 +26,4 @@ PARAM_LABELS = {
 PARAM_IDS = [k for k in PARAM_LABELS]
 
 # Default station (if needed by a function)
-STATION_ID = 6059500
+STATION_ID = 6059500 # Saone - Caluire
