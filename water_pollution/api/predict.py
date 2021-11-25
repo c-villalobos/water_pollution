@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 
+import pandas as pd
+
 app = FastAPI()
 
 
@@ -11,7 +13,15 @@ def index():
 @app.get("/predict")
 def predict(station_id,predict_length):
 
+    folder_path = 'cooked_data/station_data_2011_2021/'
+    file_name = str(station_id) + '.pickle'
+
+    file_path = folder_path + file_name
+    station_df = pd.read_pickle(file_path)
+
+    initial_series = station_df['1340']
+
     return {
-        "station_id": station_id,
-        "predict_length": predict_length,
-        }
+        "initial_series": initial_series,
+        "int_test": 12,
+    }
