@@ -34,4 +34,11 @@ def predict(df, length):
     forecast = np.exp(forecast)*result_mul.seasonal[-length:]
     lower = np.exp(confidence_int)[:,0]*result_mul.seasonal[-length:]
     upper = np.exp(confidence_int)[:,1]*result_mul.seasonal[-length:]
+
+    # Updates the indexes of the forecast, lower and upper
+    fc_index = pd.date_range(df.index[-1], periods=length+1, freq='MS')[1:]
+    forecast.index = fc_index
+    lower.index = fc_index
+    upper.index = fc_index
+
     return forecast, lower, upper

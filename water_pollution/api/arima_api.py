@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from water_pollution.model import arima
 
 import pandas as pd
 
@@ -20,6 +21,8 @@ def predict(station_id,predict_length):
     station_df = pd.read_pickle(file_path)
 
     initial_series = station_df['1340']
+
+    
 
     return {
         "initial_series": initial_series,
