@@ -53,3 +53,23 @@ pypi_test:
 
 pypi:
 	@twine upload dist/* -u $(PYPI_USERNAME)
+
+# ----------------------------------
+#     DOCKER / GCP
+# ----------------------------------
+
+GCP_PRJ_ID="wagon-water-backend"
+DOCKER_IMG="api"
+GCR_MULTI_REGION="eu.gcr.io"
+GCR_REGION="europe-west1"
+
+API_IMG="${GCR_MULTI_REGION}/${GCP_PRJ_ID}/${DOCKER_IMG}"
+
+docker_build:
+	@docker build -t ${API_IMG} .
+
+docker_push:
+	@docker push ${API_IMG}
+
+gcr_deploy:
+	@gcloud run deploy --image ${API_IMG} --platform managed --region ${GCR_REGION}
