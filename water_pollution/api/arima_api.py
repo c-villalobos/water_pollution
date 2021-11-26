@@ -4,11 +4,41 @@ from water_pollution.model import arima
 import pandas as pd
 
 
+STATIONS = [
+    {
+        'id':6059500,
+        'label': 'SAONE A LYON 1',
+        'coord':  [ 4.831905651439411, 45.796538771031791 ]
+    },
+    {
+        'id':6000990,
+        'label': 'SAONE A BELRUPT',
+        'coord': [ 6.101940890815991, 48.090273327987276 ]
+    },
+    {
+        'id':6001000,
+        'label': 'SAONE A CENDRECOURT',
+        'coord':  [ 5.917378095285407, 47.840260837412551 ]
+    },
+    {
+        'id':6002500,
+        'label': 'SAONE A PORT-SUR-SAONE',
+        'coord':  [ 6.039291564176292, 47.691078334268859 ]
+    },
+    {
+        'id':6003600,
+        'label': 'SAONE A SCEY-SUR-SAONE',
+        'coord':  [ 5.972459738821173, 47.661731120409826 ]
+    },
+    {
+        'id':6005500,
+        'label': 'SAONE A APREMONT 1',
+        'coord':  [ 5.544088676925676, 47.39571566626848 ]
+    },
 
-STATION_IDS = [
-    6059500 # SAONE CALUIRE
-    ]
+]
 
+STATION_IDS = [station['id'] for station in STATIONS]
 
 
 app = FastAPI()
@@ -59,3 +89,14 @@ def predict(station_id,predict_length):
         'lower': lower,
         'upper': upper
     }
+
+@app.get('/stations')
+def stations():
+    """
+    Returns a list of station dicts, with :
+        'id':6059500,
+        'label': 'NAME OF THE STATION',
+        'coord':  [ x_coord, y_coord ]
+    """
+
+    return STATIONS
