@@ -72,4 +72,4 @@ docker_push:
 	@docker push ${API_IMG}
 
 gcr_deploy:
-	@gcloud run deploy --image ${API_IMG} --platform managed --region ${GCR_REGION}
+	@gcloud run deploy --image ${API_IMG} --platform managed --region ${GCR_REGION} --allow-unauthenticated
