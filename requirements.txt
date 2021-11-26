@@ -26,3 +26,6 @@ statsmodels
 joblib
 memoized-property
 termcolor
+
+#Website
+streamlit
