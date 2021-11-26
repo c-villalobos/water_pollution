@@ -1,4 +1,4 @@
-Sources de données pour le premier modèle.
+Sources de données pour le premier modèle arima
 
 Chaque fichier contient un DataFrame avec les données mensualisées :
 index = timestamp (premier jour du mois) sur 11/2011 - 11/2021
