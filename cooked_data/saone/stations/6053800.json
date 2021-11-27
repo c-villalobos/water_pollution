@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "CdStationMesureEauxSurface": "06053800", "LbStationMesureEauxSurface": "SAONE A ST-BERNARD", "DateCreationStationMesureEauxSurface": "1900-01-01", "DateMAJInfosStationMesureEauxSurface": "2021-11-19", "StStationMesure": "Validé", "NomStationMesureEauxSurface": "SAONE A ST-BERNARD", "FinaliteStationMesureEauxSurface": "", "LocPreciseStationMesureEauxSurface": "Pont de Saint Bernard", "CarteLocStationMesureEauxSurface": "", "SchemaLocStationMesureEauxSurface": "", "AltitudePointCaracteritisque": "170", "SuperficieBassinVersantTopo": "", "SuperficieBassinVersantReel": "", "PremierMoisAnneeEtiage": "", "PkPointTronconEntiteHydroPrincipale": "", "DateArretActiviteStationMesureEauxSurface": "", "ComStationMesureEauxSurface": "", "ModeObtentionCoordStationMesureEauxSurface": "2", "NatureStationMesureEauxSurface": "M", "ClasseDurete": "", "CdMasseDEau": "DR1807b", "CdEntiteHydrographique": "U---0000", "CdTronconHydrographique": "U4520000", "CdCommune": "01339", "CdBassin": "", "DateDuJeuDeDonnee": "", "ProducteurDuJeu": "Agence de l'Eau Rhône-Méditerranée et Corse", "CoordXStationMesureEauxSurface": "833933.00", "CoordYStationMesureEauxSurface": "6539734.00", "ProjStationMesureEauxSurface": "26", "NomEntiteHydrographique": "La Saône", "TypeCEStationMesureEauxSurface": "0", "TypEthStationMesureEauxSurface": "2", "tid": "10901523", "CdIntervenant": "18690155900069", "DurStationMesureEauxSurface": "" }, "geometry": { "type": "Point", "coordinates": [ 4.728940625602998, 45.944113681089249 ] } }
+]
+}

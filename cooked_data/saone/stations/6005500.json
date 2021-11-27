@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "CdStationMesureEauxSurface": "06005500", "LbStationMesureEauxSurface": "SAONE A APREMONT 1", "DateCreationStationMesureEauxSurface": "1900-01-01", "DateMAJInfosStationMesureEauxSurface": "2021-11-08", "StStationMesure": "Validé", "NomStationMesureEauxSurface": "SAONE A APREMONT 1", "FinaliteStationMesureEauxSurface": "", "LocPreciseStationMesureEauxSurface": "Pont D 269", "CarteLocStationMesureEauxSurface": "", "SchemaLocStationMesureEauxSurface": "", "AltitudePointCaracteritisque": "190", "SuperficieBassinVersantTopo": "", "SuperficieBassinVersantReel": "", "PremierMoisAnneeEtiage": "", "PkPointTronconEntiteHydroPrincipale": "", "DateArretActiviteStationMesureEauxSurface": "", "ComStationMesureEauxSurface": "", "ModeObtentionCoordStationMesureEauxSurface": "2", "NatureStationMesureEauxSurface": "M", "ClasseDurete": "", "CdMasseDEau": "DR1806b", "CdEntiteHydrographique": "U---0000", "CdTronconHydrographique": "U0830000", "CdCommune": "70024", "CdBassin": "", "DateDuJeuDeDonnee": "", "ProducteurDuJeu": "Agence de l'Eau Rhône-Méditerranée et Corse", "CoordXStationMesureEauxSurface": "891867.00", "CoordYStationMesureEauxSurface": "6702577.00", "ProjStationMesureEauxSurface": "26", "NomEntiteHydrographique": "La Saône", "TypeCEStationMesureEauxSurface": "0", "TypEthStationMesureEauxSurface": "2", "tid": "10901463", "CdIntervenant": "18690155900069", "DurStationMesureEauxSurface": "" }, "geometry": { "type": "Point", "coordinates": [ 5.544088676925676, 47.39571566626848 ] } }
+]
+}

@@ -1,6 +1,9 @@
 import pandas as pd
+import numpy as np
 
 from water_pollution.data.params import *
+from water_pollution.data.utils import haversine
+from water_pollution.data import stations
 
 
 class Station():
@@ -41,15 +44,16 @@ def get_rawdf_from_file(file_path,param_ids=PARAM_IDS):
         'CdParametre',  # code du paramètre
         'LbLongParamètre',  # label du paramètre
         'RsAna',  # resultat de la mesure
-        'CdQualAna'  # Code de la qualification du résultat :
+        'CdQualAna',  # Code de la qualification du résultat :
         # 1 -> correcte / autre, à filtrer
+        'LqAna',  # limite de quantification (renseignée)
     ]
 
     # Unused columns, can be interesting for mesure selection
     potential_col = [
         'SymUniteMesure',  # symbole de l'unité de mesure (°C...)
-        'LQAna',  # limite de quantification (sous laquelle la mesure n'est pas fidèle)
-        'LSAna',  # limite de saturation
+        'LsAna',  # limite de saturation (pas renseignée)
+        'IncertAna',  # incertitude (pas renseignée)
         'IncertAna',  # incertitude analytique
     ]
 
@@ -148,6 +152,8 @@ def cook_rawdf(df):
 def turn_df_to_month(df):
     """From a cooked df, returns a df with data by month"""
 
+    df = df.copy()
+
     df['month'] = df.index.month
     df['year'] = df.index.year
     df = df.groupby(['year', 'month'], as_index=False).mean()
@@ -171,3 +177,55 @@ def get_station_month_df_from_file(file_path,station_id,param_ids=PARAM_IDS):
     df = turn_df_to_month(df)
 
     return df
+
+def build_saone_base_training_data(rawdf):
+    """
+    Takes a rawdf of saone stations params
+    Returns a df with :
+    - date
+    - year
+    - sin_doy               sinus(day of year)
+    - cos_doy
+    - source_dist           distance from the source
+    - nitrate
+    """
+
+
+    # Filters on Nitrate measures
+    # Selects and rename columns
+
+    nitrate_bool = rawdf['CdParametre'] == 1340
+    selected_col = ['CdStationMesureEauxSurface','DatePrel','RsAna']
+
+    nitratedf = rawdf[nitrate_bool][selected_col].copy()
+    nitratedf.columns = ['id','date','nitrate']
+
+    # Format date
+    nitratedf['date'] = pd.to_datetime(nitratedf['date'])
+    nitratedf['doy'] = nitratedf['date'].dt.dayofyear # doy = day of year
+    nitratedf['year'] = nitratedf['date'].dt.year
+
+    # Turns day of year to cyclical feature (sin,cos)
+    nitratedf['sin_doy'] = np.sin( (nitratedf['doy']-1) * 2 * np.pi / 365 )
+    nitratedf['cos_doy'] = np.cos( (nitratedf['doy']-1) * 2 * np.pi / 365 )
+
+    ### Distance from source to the measure
+
+
+    # Gets the stations dataFrame and source coord
+    stationsdf = stations.get_saone_stations_df()
+    SOURCE_COORD = stations.SAONE_SOURCE_COORD
+
+    # Adds distance from source to the stationsdf
+    stationsdf['source_dist'] =\
+        stationsdf['coord'].apply(lambda x : haversine(x[0],x[1],*SOURCE_COORD))
+
+    # Keeps only source_dist and id
+    stationsdf = stationsdf[['id', 'source_dist']]
+
+    finaldf = pd.merge(nitratedf, stationsdf, how='left', on='id')
+    finaldf = finaldf[[
+        'date', 'year', 'sin_doy', 'cos_doy', 'source_dist', 'nitrate'
+    ]]
+
+    return finaldf
