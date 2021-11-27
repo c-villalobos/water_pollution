@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "CdStationMesureEauxSurface": "06900150", "LbStationMesureEauxSurface": "SAONE A CHANTES", "DateCreationStationMesureEauxSurface": "2000-03-17", "DateMAJInfosStationMesureEauxSurface": "2019-07-08", "StStationMesure": "Validé", "NomStationMesureEauxSurface": "SAONE A CHANTES", "FinaliteStationMesureEauxSurface": "", "LocPreciseStationMesureEauxSurface": "non précisé", "CarteLocStationMesureEauxSurface": "", "SchemaLocStationMesureEauxSurface": "", "AltitudePointCaracteritisque": "205", "SuperficieBassinVersantTopo": "", "SuperficieBassinVersantReel": "", "PremierMoisAnneeEtiage": "", "PkPointTronconEntiteHydroPrincipale": "", "DateArretActiviteStationMesureEauxSurface": "", "ComStationMesureEauxSurface": "", "ModeObtentionCoordStationMesureEauxSurface": "2", "NatureStationMesureEauxSurface": "M", "ClasseDurete": "", "CdMasseDEau": "DR1806a", "CdEntiteHydrographique": "U---0000", "CdTronconHydrographique": "U0600000", "CdCommune": "70457", "CdBassin": "", "DateDuJeuDeDonnee": "", "ProducteurDuJeu": "Agence de l'Eau Rhône-Méditerranée et Corse", "CoordXStationMesureEauxSurface": "920078.00", "CoordYStationMesureEauxSurface": "6730830.00", "ProjStationMesureEauxSurface": "26", "NomEntiteHydrographique": "La Saône", "TypeCEStationMesureEauxSurface": "0", "TypEthStationMesureEauxSurface": "2", "tid": "10901332", "CdIntervenant": "18690155900069", "DurStationMesureEauxSurface": "" }, "geometry": { "type": "Point", "coordinates": [ 5.93173923271672, 47.641079915848429 ] } }
+]
+}

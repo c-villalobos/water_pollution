@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "CdStationMesureEauxSurface": "06000993", "LbStationMesureEauxSurface": "SAONE A JONVELLE", "DateCreationStationMesureEauxSurface": "1900-01-01", "DateMAJInfosStationMesureEauxSurface": "2019-07-08", "StStationMesure": "Validé", "NomStationMesureEauxSurface": "SAONE A JONVELLE", "FinaliteStationMesureEauxSurface": "", "LocPreciseStationMesureEauxSurface": "Pont de Jonvelle", "CarteLocStationMesureEauxSurface": "", "SchemaLocStationMesureEauxSurface": "", "AltitudePointCaracteritisque": "230", "SuperficieBassinVersantTopo": "", "SuperficieBassinVersantReel": "", "PremierMoisAnneeEtiage": "", "PkPointTronconEntiteHydroPrincipale": "", "DateArretActiviteStationMesureEauxSurface": "", "ComStationMesureEauxSurface": "", "ModeObtentionCoordStationMesureEauxSurface": "2", "NatureStationMesureEauxSurface": "M", "ClasseDurete": "", "CdMasseDEau": "DR695", "CdEntiteHydrographique": "U---0000", "CdTronconHydrographique": "U0050000", "CdCommune": "70291", "CdBassin": "", "DateDuJeuDeDonnee": "", "ProducteurDuJeu": "Agence de l'Eau Rhône-Méditerranée et Corse", "CoordXStationMesureEauxSurface": "918248.00", "CoordYStationMesureEauxSurface": "6763595.00", "ProjStationMesureEauxSurface": "26", "NomEntiteHydrographique": "La Saône", "TypeCEStationMesureEauxSurface": "0", "TypEthStationMesureEauxSurface": "2", "tid": "10901951", "CdIntervenant": "18690155900069", "DurStationMesureEauxSurface": "" }, "geometry": { "type": "Point", "coordinates": [ 5.923536232871648, 47.93638044949666 ] } }
+]
+}
