@@ -1,4 +1,6 @@
 import requests
+from requests.api import get
+from api_key import *
 
 def get_prec_temp_forecast(lat, lon):
     '''
@@ -6,7 +8,6 @@ def get_prec_temp_forecast(lat, lon):
     Returns dictionary containing date, location and temperature and precipitation forecast for the next three days.
     '''
     uri = 'http://api.weatherapi.com/v1/'
-    api_key = '946b168e08314d6abea100703212911'
     query = f'forecast.json?key={api_key}&q={lat},{lon}&days=10&aqi=no&alerts=no'
     full_url = uri + query
 
