@@ -186,6 +186,7 @@ def build_saone_base_training_data(rawdf):
     - year
     - sin_doy               sinus(day of year)
     - cos_doy
+    - id_station
     - source_dist           distance from the source
     - nitrate
     """
@@ -198,7 +199,7 @@ def build_saone_base_training_data(rawdf):
     selected_col = ['CdStationMesureEauxSurface','DatePrel','RsAna']
 
     nitratedf = rawdf[nitrate_bool][selected_col].copy()
-    nitratedf.columns = ['id','date','nitrate']
+    nitratedf.columns = ['station_id','date','nitrate']
 
     # Format date
     nitratedf['date'] = pd.to_datetime(nitratedf['date'])
@@ -220,12 +221,15 @@ def build_saone_base_training_data(rawdf):
     stationsdf['source_dist'] =\
         stationsdf['coord'].apply(lambda x : haversine(x[0],x[1],*SOURCE_COORD))
 
-    # Keeps only source_dist and id
+    # Keeps only source_dist and _station
     stationsdf = stationsdf[['id', 'source_dist']]
+    stationsdf.columns = ['station_id', 'source_dist']
 
-    finaldf = pd.merge(nitratedf, stationsdf, how='left', on='id')
+    finaldf = pd.merge(nitratedf, stationsdf, how='left', on='station_id')
     finaldf = finaldf[[
-        'date', 'year', 'sin_doy', 'cos_doy', 'source_dist', 'nitrate'
+        'date', 'year', 'sin_doy', 'cos_doy',
+        'station_id', 'source_dist',
+        'nitrate'
     ]]
 
     return finaldf
