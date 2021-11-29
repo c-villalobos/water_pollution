@@ -3,9 +3,10 @@
 .ipynb_checkpoints
 .DS_Store
 raw_data/
-*.csv
 **/__pycache__/
 .env
 .vscode/settings.json
 
 api_key.py
+
+.python-version
