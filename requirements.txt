@@ -9,6 +9,7 @@ pandas
 scikit-learn
 statsmodels==0.11.0
 pmdarima
+tensorflow==2.5.2
 
 # # tests/linter
 # black
@@ -30,3 +31,5 @@ fastapi
 joblib
 memoized-property
 termcolor
+
+python-dotenv
