@@ -1,12 +1,18 @@
 from water_pollution.api import ann_utils as util
+
 from fastapi import FastAPI
 
-import time
 import pandas as pd
+import numpy as np
+
+import pickle
+from sklearn.externals import joblib
+from tensorflow.keras import models
+
+
 
 app = FastAPI()
 
-# ROOT `/` ENDPOINT
 @app.get("/")
 def index():
     return {"ok": True}
@@ -14,10 +20,8 @@ def index():
 
 
 @app.get("/predictstation")
-def predictstation(station_id,predict_length):
+def predictstation(station_id):
 
+    predicteddf = util.get_station_weather_prediction_df(station_id)
 
-    # Build date list to request to the API
-
-    # Gets the scaler and the model
-    scaler,model = util.get_scaler_model()
+    # FORMAT THE DF TO JSON HERE
