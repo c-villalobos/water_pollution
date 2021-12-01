@@ -6,3 +6,6 @@ valdf : le df des données de validation
 
 scaler.save - sklearn standard scaler a utiliser pour scaler avant préd
 répertoire model : le modèle ANN tensorflow
+
+RMSE du modèle : 2.35
+(MSE de 5.5 ~)

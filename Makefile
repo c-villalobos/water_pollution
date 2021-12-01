@@ -68,6 +68,9 @@ API_IMG="${GCR_MULTI_REGION}/${GCP_PRJ_ID}/${DOCKER_IMG}"
 docker_build:
 	@docker build -t ${API_IMG} .
 
+docker_run_local:
+	@docker run -e PORT=8000 -p 8080:8000 ${API_IMG}
+
 docker_push:
 	@docker push ${API_IMG}
 

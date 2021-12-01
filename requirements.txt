@@ -6,6 +6,7 @@ wheel>=0.29
 # data science
 numpy
 pandas
+matplotlib
 scikit-learn
 statsmodels==0.11.0
 pmdarima
@@ -29,7 +30,8 @@ fastapi
 
 # utilities
 joblib
+dill
+
 memoized-property
-termcolor
 
 python-dotenv

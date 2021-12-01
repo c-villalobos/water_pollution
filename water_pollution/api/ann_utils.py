@@ -1,4 +1,4 @@
-from sklearn.externals import joblib
+import joblib
 from tensorflow.keras import models
 import pandas as pd
 import numpy as np
@@ -13,7 +13,7 @@ import requests
 from dotenv import load_dotenv
 load_dotenv()  # Loads env variable from the root .env file
 
-SAV_PATH = '../../api_data/'
+SAV_PATH = key = os.getenv('API_SAV_DIR')
 
 
 def get_scaler_model():
@@ -180,27 +180,22 @@ def get_station_weather_prediction_df(station_id):
     # Checks that the station_id is known
     stationsdf = get_stations_df()
     if station_id not in stationsdf.index:
-        return {'error': 'station_id unknown'}
+        return None
 
     # Gets and weather forecast and history
     # and builds the features df
 
-    try:
-        weatherdf = get_station_weather_data(station_id)
-    except:
-        return {'error': "Can't get Weather Datas"}
+    weatherdf = get_station_weather_data(station_id)
 
     ### SCALER / MODEL LOADING
 
-    sav_path = '../../cooked_data/saone/best_model/'
-
-    model_path = sav_path + 'model'
+    model_path = SAV_PATH + 'model'
     model = models.load_model(model_path,
                               custom_objects=None,
                               compile=True,
                               options=None)
 
-    scaler_path = sav_path + 'scaler.save'
+    scaler_path = SAV_PATH + 'scaler.save'
     scaler = joblib.load(scaler_path)
 
     # DATA PREPARATION
