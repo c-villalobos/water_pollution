@@ -127,7 +127,13 @@ def get_station_weather_data(station_id):
             'end_dt': string_range[1],
         }
 
+        print("Starting Weather API Request :")
+        print(datetime.now())
+
         response = requests.get(url_hist, params=params)
+
+        print("Got the response")
+        print(datetime.now())
 
         if not response:  # if response is not 200
             pass  # traiter les exceptions...
