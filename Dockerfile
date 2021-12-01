@@ -9,4 +9,4 @@ COPY .env .env
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-CMD uvicorn water_pollution.api.arima_api:app --host 0.0.0.0 --port $PORT
+CMD uvicorn water_pollution.api.ann_api:app --host 0.0.0.0 --port $PORT
