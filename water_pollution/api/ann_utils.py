@@ -5,7 +5,7 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
 import os
 import requests
@@ -13,7 +13,7 @@ import requests
 from dotenv import load_dotenv
 load_dotenv()  # Loads env variable from the root .env file
 
-SAV_PATH = key = os.getenv('API_SAV_DIR')
+SAV_PATH = os.getenv('API_SAV_DIR')
 
 
 def get_scaler_model():
@@ -127,13 +127,7 @@ def get_station_weather_data(station_id):
             'end_dt': string_range[1],
         }
 
-        print("Starting Weather API Request :")
-        print(datetime.now())
-
         response = requests.get(url_hist, params=params)
-
-        print("Got the response")
-        print(datetime.now())
 
         if not response:  # if response is not 200
             pass  # traiter les exceptions...
@@ -220,3 +214,24 @@ def get_station_weather_prediction_df(station_id):
     weatherdf['prediction'] = y_pred
 
     return weatherdf
+
+def build_cache():
+
+    stationsdf = get_stations_df()
+
+    for station_id in stationsdf.index :
+
+        # Build the cache filename
+        stamp = date.today().strftime('%Y%m%d')
+        cachefile_name = stamp + str(station_id) + '.cache'
+        cachefile_path = SAV_PATH + 'cache/' + cachefile_name
+
+        # If cache file exists, loads from it
+        # Else, builds the prediction from WeatherAPI
+        if os.path.isfile(cachefile_path):
+            predicteddf = pd.read_pickle(cachefile_path)
+            print('from cache')
+        else :
+            predicteddf = get_station_weather_prediction_df(station_id)
+            predicteddf.to_pickle(cachefile_path)
+            print('from API')
