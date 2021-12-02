@@ -45,6 +45,7 @@ def predict(station_id):
 
 
     # FORMAT THE DF TO JSON HERE
+    print('ok')
 
     return {
         'date': list(predicteddf.index.strftime('%Y-%m-%d')),
